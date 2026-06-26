@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Github, Linkedin, Shield, Code, Wrench, ChevronRight, Activity, Calendar } from 'lucide-react';
-import { PROJECTS_DATA, CTF_ACHIEVEMENTS_DATA } from '../data';
+import { PROJECTS_DATA} from '../data';
 
 interface HomeSectionProps {
   setActiveTab: (tab: string) => void;
@@ -11,7 +11,6 @@ export default function HomeSection({ setActiveTab, openTerminal }: HomeSectionP
   const [typedActivity, setTypedActivity] = useState('');
   const [activityIndex, setActivityIndex] = useState(0);
   const activities = [
-    'Hunting vulnerabilities on HackerOne...',
     'Analyzing binary payloads in Ghidra...',
     'Configuring reverse shell listener on Port 4444...',
     'Decoding Base64 cryptography vectors...',
@@ -23,7 +22,7 @@ export default function HomeSection({ setActiveTab, openTerminal }: HomeSectionP
     let currentText = '';
     let charIndex = 0;
     const activity = activities[activityIndex];
-    
+
     const typingInterval = setInterval(() => {
       if (charIndex < activity.length) {
         currentText += activity.charAt(charIndex);
@@ -60,24 +59,24 @@ export default function HomeSection({ setActiveTab, openTerminal }: HomeSectionP
 
   return (
     <div className="home-section bg-grid-pattern" id="home-section">
-      
+
       {/* Hero Section */}
       <div className="hero-block" id="hero-block">
-        
+
         {/* Avatar Ring Structure */}
         <div className="hero-avatar-wrapper" id="hero-avatar">
           <div className="hero-avatar-blur"></div>
           <div className="hero-avatar-inner">
             <div className="avatar-border-box">
-              <img 
-                src={avatarUrl} 
-                alt="DARKDUCHIHA Profile" 
+              <img
+                src={avatarUrl}
+                alt="DARKDUCHIHA Profile"
                 referrerPolicy="no-referrer"
                 className="avatar-img"
                 id="avatar-image"
               />
             </div>
-            
+
             {/* Clinical technical badge under avatar */}
             <div className="avatar-badge" id="avatar-badge">
               SL.PROV.SEC
@@ -91,7 +90,7 @@ export default function HomeSection({ setActiveTab, openTerminal }: HomeSectionP
             Not chasing titles.<br />
             <span className="hero-heading-gray">Chasing understanding.</span>
           </h1>
-          
+
           <p className="hero-subtext" id="hero-subtext">
             Cybersecurity undergrad from Sri Lanka. I grind CTFs, break things to learn how they work, and write about it. Currently exploring bug bounty — not for the money, for the hunt.
           </p>
@@ -99,20 +98,20 @@ export default function HomeSection({ setActiveTab, openTerminal }: HomeSectionP
 
         {/* Hero Actions (GitHub & LinkedIn) */}
         <div className="hero-actions" id="hero-actions">
-          <a 
-            href="https://github.com/darkduchiha" 
-            target="_blank" 
-            rel="noopener noreferrer" 
+          <a
+            href="https://github.com/KaviruN"
+            target="_blank"
+            rel="noopener noreferrer"
             className="hero-btn-primary"
             id="hero-github-btn"
           >
             <Github size={14} />
             <span>GITHUB</span>
           </a>
-          <a 
-            href="https://linkedin.com/in/kavirunethsara" 
-            target="_blank" 
-            rel="noopener noreferrer" 
+          <a
+            href="https://linkedin.com/in/kaviru-n"
+            target="_blank"
+            rel="noopener noreferrer"
             className="hero-btn-secondary"
             id="hero-linkedin-btn"
           >
@@ -129,7 +128,7 @@ export default function HomeSection({ setActiveTab, openTerminal }: HomeSectionP
         </div>
 
         <div className="tech-stack-grid" id="tech-stack-grid">
-          
+
           {/* Languages Card */}
           <div className="tech-card" id="tech-card-languages">
             <div className="tech-card-header" id="tech-card-header-1">
@@ -215,18 +214,22 @@ export default function HomeSection({ setActiveTab, openTerminal }: HomeSectionP
         </div>
 
         <div className="ctf-grid" id="ctf-grid">
-          
+
           {/* Left Column: Achievements Info */}
           <div className="ctf-info-col" id="ctf-info">
-            
+
             {/* TryHackMe achievement block */}
-            <div className="ctf-achievement-card" id="ctf-card-thm">
+            <div
+              className="ctf-achievement-card"
+              id="ctf-card-thm-ranking"
+              onClick={() => window.open('https://tryhackme.com/p/KaviruN', '_blank')}
+            >
               <div className="flex-1">
                 <span className="ctf-card-label">TOP RANKING</span>
-                <h4 className="ctf-card-heading" id="thm-title">
+                <h4 className="ctf-card-heading" id="thm-title-ranking">
                   TryHackMe — top 2% globally
                 </h4>
-                <p className="ctf-card-desc" id="thm-desc">
+                <p className="ctf-card-desc" id="thm-desc-ranking">
                   Advanced offensive security rooms and red teaming labs completed with consistent top-tier placement.
                 </p>
               </div>
@@ -240,7 +243,24 @@ export default function HomeSection({ setActiveTab, openTerminal }: HomeSectionP
                   PicoCTF — 81+ challenges
                 </h4>
                 <p className="ctf-card-desc" id="pico-desc">
-                  Focusing on Binary Exploitation and Cryptography fundamentals in high-pressure competition environments.
+                  Focusing on Web Exploitation and Cryptography fundamentals in high-pressure competition environments.
+                </p>
+              </div>
+            </div>
+
+            {/* TryHackMe achievement block */}
+            <div
+              className="ctf-achievement-card"
+              id="ctf-card-thm-challenges"
+              onClick={() => window.open('https://tryhackme.com/p/KaviruN', '_blank')}
+            >
+              <div className="flex-1">
+                <span className="ctf-card-label">CHALLENGE SOLVER</span>
+                <h4 className="ctf-card-heading" id="thm-title-challenges">
+                  TryHackMe — 50+ Challenges
+                </h4>
+                <p className="ctf-card-desc" id="thm-desc-challenges">
+                  Completed rooms with focus on of web exploitation and linux.
                 </p>
               </div>
             </div>
@@ -249,7 +269,7 @@ export default function HomeSection({ setActiveTab, openTerminal }: HomeSectionP
 
           {/* Right Column: Interactive Streak & Status Dashboard */}
           <div className="ctf-dashboard-col" id="ctf-dashboard-card">
-            
+
             {/* Top row: Header & Online status */}
             <div className="dashboard-header-row" id="ctf-dashboard-header">
               <span className="dashboard-section-label">
@@ -266,8 +286,8 @@ export default function HomeSection({ setActiveTab, openTerminal }: HomeSectionP
             <div className="streak-block-wrapper" id="streak-block">
               <div className="streak-row" id="streak-bar-grid">
                 {streakDays.map((day) => (
-                  <div 
-                    key={day.name} 
+                  <div
+                    key={day.name}
                     className="streak-day-cell"
                     onMouseEnter={() => setHoveredStreak(day.desc)}
                     onMouseLeave={() => setHoveredStreak(null)}
@@ -294,8 +314,8 @@ export default function HomeSection({ setActiveTab, openTerminal }: HomeSectionP
                 <Activity size={10} />
                 <span>CURRENT_ACTIVITY</span>
               </span>
-              <div 
-                onClick={openTerminal} 
+              <div
+                onClick={openTerminal}
                 className="activity-terminal-trigger"
                 id="activity-terminal-box"
               >

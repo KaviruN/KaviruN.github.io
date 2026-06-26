@@ -92,22 +92,29 @@ export const PROJECTS_DATA: Project[] = [
   }
 ];
 
-export const CTF_ACHIEVEMENTS_DATA: CtfAchievement[] = [
-  {
-    platform: 'TryHackMe',
-    title: 'Top 2% Globally',
-    stat: 'Rank: ~15,200',
-    description: 'Advanced offensive security rooms and red teaming labs completed with consistent top-tier placement.',
-    iconType: 'trophy'
-  },
-  {
-    platform: 'PicoCTF',
-    title: '81+ Challenges Solver',
-    stat: 'Score: 12,450',
-    description: 'Focusing on Binary Exploitation and Cryptography fundamentals in high-pressure competition environments.',
-    iconType: 'shield'
-  }
-];
+// export const CTF_ACHIEVEMENTS_DATA: CtfAchievement[] = [
+//   {
+//     platform: 'TryHackMe',
+//     title: 'Top 2% Globally',
+//     stat: 'Rank: ~15,200',
+//     description: 'Advanced offensive security rooms and red teaming labs completed with consistent top-tier placement.',
+//     iconType: 'trophy'
+//   },
+//   {
+//     platform: 'PicoCTF',
+//     title: '81+ Challenges Solver',
+//     stat: 'Score: 12,450',
+//     description: 'Focusing on Binary Exploitation and Cryptography fundamentals in high-pressure competition environments.',
+//     iconType: 'shield'
+//   },
+//   {
+//     platform: 'TryHackMe',
+//     title: 'Top 2% Globally',
+//     stat: 'Rank: ~15,200',
+//     description: 'Advanced offensive security rooms and red teaming labs completed with consistent top-tier placement.',
+//     iconType: 'trophy'
+//   }
+// ];
 
 export const EXPERIENCE_DATA: ExperienceItem[] = [
   {

@@ -333,10 +333,12 @@
   border-left: 2px solid var(--text-white);
   padding: 8px 0 8px 24px;
   transition: background-color var(--transition-fast);
+  cursor: pointer;
 }
 
 .ctf-achievement-card:hover {
   background-color: rgba(255, 255, 255, 0.02);
+  
 }
 
 .ctf-card-label {
