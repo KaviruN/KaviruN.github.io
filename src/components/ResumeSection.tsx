@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Award, Briefcase, GraduationCap, Mail, Phone, MapPin, Printer, Shield, ChevronDown, ChevronUp } from 'lucide-react';
+import { Award, Briefcase, GraduationCap, Mail, Phone, MapPin, Printer, Shield, ChevronDown, ChevronUp, Eye, ExternalLink, X } from 'lucide-react';
 import { EXPERIENCE_DATA, EDUCATION_DATA } from '../data';
 
 export default function ResumeSection() {
   const [expandedRole, setExpandedRole] = useState<string | null>(EXPERIENCE_DATA[0].role);
+  const [selectedPdf, setSelectedPdf] = useState<string | null>(null);
 
   const toggleRole = (roleName: string) => {
     if (expandedRole === roleName) {
@@ -26,27 +27,32 @@ export default function ResumeSection() {
     {
       name: 'Web Application Pentesting',
       issuer: 'TryHackMe',
-      status: 'Completed — June 2026'
+      status: 'Completed — June 2026',
+      pdfUrl: 'https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-SWQMY92THD.pdf'
     },
     {
       name: 'Jr Penetration Tester',
       issuer: 'TryHackMe',
-      status: 'Completed — November 2025'
+      status: 'Completed — November 2025',
+      pdfUrl: 'https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-NOGQLPVLJT.pdf'
     },
     {
       name: 'Web Fundamentals',
       issuer: 'TryHackMe',
-      status: 'Completed — March 2026'
+      status: 'Completed — March 2026',
+      pdfUrl: 'https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-5OHUI4ETHL.pdf'
     },
     {
       name: 'Cyber Security 101',
       issuer: 'TryHackMe',
-      status: 'Completed — June 2025'
+      status: 'Completed — June 2025',
+      pdfUrl: 'https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-HDOGY5BPYR.pdf'
     },
     {
       name: 'Pre Security',
       issuer: 'TryHackMe',
-      status: 'Completed'
+      status: 'Completed',
+      pdfUrl: 'https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-PRX3XH19EN.pdf'
     }
   ];
 
@@ -77,7 +83,7 @@ export default function ResumeSection() {
         <div className="resume-head-card" id="resume-head-card">
           <div className="resume-name-title-box">
             <h1 className="resume-name">KAVIRU NETHSARA</h1>
-            <span className="resume-subtitle">Cybersecurity Specialist // DevSecOps Intern</span>
+            <span className="resume-subtitle">'Cybersecurity Student // CTF Competitor'</span>
             <p className="resume-brief-desc">
               Passionate offensive security researcher specializing in web penetration testing, automated API vulnerability assessments, and cryptography challenge engineering.
             </p>
@@ -187,21 +193,78 @@ export default function ResumeSection() {
           </div>
 
           <div className="certs-grid" id="certs-grid">
-            {certs.map(c => (
-              <div key={c.name} className="cert-card" id="cert-item-card">
-                <div>
-                  <h4 className="cert-name-label">{c.name}</h4>
-                  <span className="cert-issuer-label">{c.issuer}</span>
+            {certs.map(c => {
+              const hasPdf = 'pdfUrl' in c && c.pdfUrl;
+              return (
+                <div 
+                  key={c.name} 
+                  className={`cert-card ${hasPdf ? 'clickable' : ''}`}
+                  id="cert-item-card"
+                  onClick={hasPdf ? () => setSelectedPdf(c.pdfUrl) : undefined}
+                >
+                  <div className="cert-card-header">
+                    <div>
+                      <h4 className="cert-name-label">{c.name}</h4>
+                      <span className="cert-issuer-label">{c.issuer}</span>
+                    </div>
+                    {hasPdf && (
+                      <span className="cert-view-icon print:hidden">
+                        <Eye size={14} />
+                      </span>
+                    )}
+                  </div>
+                  <span className="cert-status-tag">
+                    {c.status.toUpperCase()}
+                  </span>
                 </div>
-                <span className="cert-status-tag">
-                  {c.status.toUpperCase()}
-                </span>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
       </div>
+
+      {/* PDF Viewer Modal */}
+      {selectedPdf && (
+        <div className="pdf-modal-overlay" onClick={() => setSelectedPdf(null)} id="pdf-viewer-overlay">
+          <div className="pdf-modal-container" onClick={(e) => e.stopPropagation()} id="pdf-viewer-container">
+            <div className="pdf-modal-header">
+              <div className="pdf-modal-title">
+                <Award size={14} className="pdf-modal-icon" />
+                <span>CREDENTIAL_VIEWER</span>
+              </div>
+              <div className="pdf-modal-actions">
+                <a 
+                  href={selectedPdf} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="pdf-modal-btn"
+                  title="Open in browser/new tab"
+                  id="pdf-open-tab-btn"
+                >
+                  <ExternalLink size={14} />
+                </a>
+                <button 
+                  onClick={() => setSelectedPdf(null)} 
+                  className="pdf-modal-btn close"
+                  title="Close viewer"
+                  id="pdf-close-btn"
+                >
+                  <X size={15} />
+                </button>
+              </div>
+            </div>
+            <div className="pdf-modal-body">
+              <iframe 
+                src={`https://docs.google.com/gview?url=${encodeURIComponent(selectedPdf)}&embedded=true`} 
+                className="pdf-iframe" 
+                title="Certificate PDF"
+                id="pdf-iframe"
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );
