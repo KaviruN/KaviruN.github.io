@@ -154,29 +154,27 @@ Now typing prefix shows 'root@darkduchiha:~#'.
 
   return (
     <div 
-      className={`fixed bottom-0 left-0 w-full z-50 bg-[#0e0e0e] border-t-2 ${sudoUnlocked ? 'border-green-500' : 'border-white'} font-mono flex flex-col transition-all duration-300 ${
-        isMaximized ? 'h-[90vh]' : 'h-[350px]'
-      }`}
+      className={`terminal-panel ${isMaximized ? 'maximized' : ''} ${sudoUnlocked ? 'sudo-unlocked' : ''}`}
       id="terminal-panel"
     >
       {/* Terminal Title Bar */}
-      <div className={`flex justify-between items-center px-4 py-2 ${sudoUnlocked ? 'bg-green-950/40 text-green-400 border-b border-green-800' : 'bg-[#131313] text-white border-b border-[#222222]'}`}>
-        <div className="flex items-center gap-2 text-xs">
-          <TerminalIcon size={14} className={sudoUnlocked ? 'text-green-500' : 'text-gray-400'} />
-          <span className="font-semibold tracking-wider">
+      <div className={`terminal-title-bar ${sudoUnlocked ? 'sudo-unlocked' : ''}`}>
+        <div className="terminal-title-left">
+          <TerminalIcon size={14} className="terminal-title-icon" />
+          <span className="terminal-title-text">
             {sudoUnlocked ? 'ROOT_SHELL: darkduchiha@terminal' : 'USER_SHELL: guest@darkduchiha'}
           </span>
           {sudoUnlocked && (
-            <span className="text-[9px] bg-green-500 text-black px-1.5 py-0.5 uppercase font-bold animate-pulse">
+            <span className="terminal-sudo-tag">
               ROOT
             </span>
           )}
         </div>
         
-        <div className="flex items-center gap-4">
+        <div className="terminal-title-actions">
           <button 
             onClick={() => setIsMaximized(!isMaximized)} 
-            className="text-gray-400 hover:text-white transition-colors"
+            className="terminal-action-btn"
             title={isMaximized ? 'Minimize Window' : 'Maximize Window'}
             id="terminal-btn-maximize"
           >
@@ -184,7 +182,7 @@ Now typing prefix shows 'root@darkduchiha:~#'.
           </button>
           <button 
             onClick={onClose} 
-            className="text-gray-400 hover:text-red-500 transition-colors"
+            className="terminal-action-btn terminal-action-btn-close"
             title="Close Terminal"
             id="terminal-btn-close"
           >
@@ -195,25 +193,21 @@ Now typing prefix shows 'root@darkduchiha:~#'.
 
       {/* Terminal Content Buffer */}
       <div 
-        className="flex-1 overflow-y-auto p-4 text-xs space-y-2 select-text" 
+        className="terminal-buffer" 
         onClick={() => inputRef.current?.focus()}
         id="terminal-buffer"
       >
         {history.map((item, idx) => (
-          <div key={idx} className="whitespace-pre-line leading-relaxed">
+          <div key={idx} className={`terminal-history-item ${item.type}`}>
             {item.input && (
-              <div className="flex items-center gap-2">
-                <span className={sudoUnlocked ? 'text-green-400' : 'text-white'}>
+              <div className="terminal-prompt-row">
+                <span className="terminal-prompt-prefix">
                   {sudoUnlocked ? 'root@darkduchiha:~#' : 'guest@darkduchiha:~$'}
                 </span>
-                <span className="text-[#e2e2e2]">{item.input}</span>
+                <span className="terminal-prompt-input-echo">{item.input}</span>
               </div>
             )}
-            <div className={`mt-1 pl-2 ${
-              item.type === 'error' ? 'text-red-400' : 
-              item.type === 'success' ? (sudoUnlocked ? 'text-green-400' : 'text-white font-medium') : 
-              sudoUnlocked ? 'text-green-300' : 'text-gray-300'
-            }`}>
+            <div className="terminal-output-text">
               {item.output}
             </div>
           </div>
@@ -222,8 +216,8 @@ Now typing prefix shows 'root@darkduchiha:~#'.
       </div>
 
       {/* Terminal Input Line */}
-      <div className={`flex items-center gap-2 px-4 py-2 border-t ${sudoUnlocked ? 'bg-green-950/20 border-green-800' : 'bg-[#111111] border-[#222222]'}`}>
-        <span className={`text-xs ${sudoUnlocked ? 'text-green-400' : 'text-white'}`}>
+      <div className={`terminal-input-line ${sudoUnlocked ? 'sudo-unlocked' : ''}`}>
+        <span className="terminal-input-prefix">
           {sudoUnlocked ? 'root@darkduchiha:~#' : 'guest@darkduchiha:~$'}
         </span>
         <input
@@ -232,13 +226,13 @@ Now typing prefix shows 'root@darkduchiha:~#'.
           value={inputVal}
           onChange={(e) => setInputVal(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="flex-1 bg-transparent text-xs text-white outline-none border-none caret-white focus:ring-0 p-0 font-mono"
+          className="terminal-input-field"
           placeholder='Type command (e.g. "help", "skills", "flag")...'
           id="terminal-input"
           autoComplete="off"
           autoCapitalize="off"
         />
-        <div className="text-[10px] text-gray-500 flex items-center gap-1 font-mono hidden md:flex">
+        <div className="terminal-enter-hint hidden md:flex">
           <span>ENTER</span>
           <CornerDownLeft size={10} />
         </div>

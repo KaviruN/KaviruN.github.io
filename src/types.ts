@@ -7,8 +7,7 @@ export interface Project {
   languages: string[];
   tools: string[];
   githubUrl?: string;
-  demoCommand: string;
-  simulatedOutput: string[];
+  demoUrl?: string;
 }
 
 export interface CtfAchievement {

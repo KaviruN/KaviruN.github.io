@@ -24,43 +24,18 @@ export default function ResumeSection() {
   ];
 
   return (
-    <div className="flex-1 bg-[#131313] bg-grid-pattern text-[#e2e2e2] px-6 py-12 md:px-12 md:py-24 max-w-4xl mx-auto w-full flex flex-col gap-12 print:bg-white print:text-black print:p-0 print:m-0 print:shadow-none" id="resume-section">
+    <div className="resume-section bg-grid-pattern" id="resume-section">
       
-      {/* Printable CSS Injector (hides navigation/footer on print) */}
-      <style>{`
-        @media print {
-          body {
-            background-color: white !important;
-            color: black !important;
-          }
-          #app-navbar, #app-footer, #terminal-panel, #terminal-link-box, #print-action-bar {
-            display: none !important;
-          }
-          .print\\:border-black {
-            border-color: #000000 !important;
-          }
-          .print\\:text-black {
-            color: #000000 !important;
-          }
-          .print\\:text-gray-700 {
-            color: #374151 !important;
-          }
-          .print\\:bg-transparent {
-            background-color: transparent !important;
-          }
-        }
-      `}</style>
-
       {/* Print / Export Action Bar */}
-      <div className="flex justify-between items-center border-b border-[#222222] pb-6 print:hidden" id="print-action-bar">
-        <div className="flex flex-col gap-1">
-          <span className="font-mono text-xs text-[#808080] tracking-widest">_CURRICULUM_VITAE</span>
-          <h2 className="font-sans font-bold text-3xl md:text-4xl text-white tracking-tight">Technical Resume</h2>
+      <div className="resume-action-bar print:hidden" id="print-action-bar">
+        <div className="resume-action-title-box">
+          <span className="section-label">_CURRICULUM_VITAE</span>
+          <h2 className="projects-heading">Technical Resume</h2>
         </div>
         
         <button
           onClick={handlePrint}
-          className="border border-white px-4 py-2 bg-white text-black hover:bg-transparent hover:text-white transition-all font-mono text-xs flex items-center gap-2 font-bold uppercase"
+          className="btn-print-cv"
           id="print-cv-btn"
         >
           <Printer size={14} />
@@ -69,80 +44,80 @@ export default function ResumeSection() {
       </div>
 
       {/* Printable Resume Container */}
-      <div className="flex flex-col gap-10 print:gap-8" id="resume-body">
+      <div className="resume-body" id="resume-body">
         
         {/* Header Block */}
-        <div className="border border-[#222222] bg-[#111111] p-6 flex flex-col md:flex-row justify-between gap-6 print:border-black print:bg-transparent print:p-0 print:border-0" id="resume-head-card">
-          <div className="flex flex-col gap-2">
-            <h1 className="font-sans font-bold text-3xl text-white tracking-tight print:text-black">KAVIRU NETHSARA</h1>
-            <span className="font-mono text-xs text-white tracking-wider uppercase print:text-black">Cybersecurity Specialist // DevSecOps Intern</span>
-            <p className="font-sans text-xs text-[#808080] max-w-md leading-relaxed mt-1 print:text-gray-700">
+        <div className="resume-head-card" id="resume-head-card">
+          <div className="resume-name-title-box">
+            <h1 className="resume-name">KAVIRU NETHSARA</h1>
+            <span className="resume-subtitle">Cybersecurity Specialist // DevSecOps Intern</span>
+            <p className="resume-brief-desc">
               Passionate offensive security researcher specializing in web penetration testing, automated API vulnerability assessments, and cryptography challenge engineering.
             </p>
           </div>
 
           {/* Contact coordinates */}
-          <div className="font-mono text-xs text-[#808080] flex flex-col gap-2 print:text-black justify-center" id="resume-contacts">
-            <div className="flex items-center gap-2">
-              <Mail size={12} className="text-white print:text-black" />
-              <a href="mailto:kaviruyt@gmail.com" className="hover:text-white transition-colors print:text-black">kaviruyt@gmail.com</a>
+          <div className="resume-contacts-box" id="resume-contacts">
+            <div className="resume-contact-item">
+              <Mail size={12} className="resume-contact-icon" />
+              <a href="mailto:kaviruyt@gmail.com">kaviruyt@gmail.com</a>
             </div>
-            <div className="flex items-center gap-2">
-              <MapPin size={12} className="text-white print:text-black" />
+            <div className="resume-contact-item">
+              <MapPin size={12} className="resume-contact-icon" />
               <span>Colombo, Sri Lanka</span>
             </div>
-            <div className="flex items-center gap-2">
-              <Shield size={12} className="text-white print:text-black" />
-              <span className="font-bold">SL.PROV.SEC</span>
+            <div className="resume-contact-item">
+              <Shield size={12} className="resume-contact-icon" />
+              <span className="resume-contact-bold">SL.PROV.SEC</span>
             </div>
           </div>
         </div>
 
         {/* Experience Timeline */}
-        <div className="flex flex-col gap-4" id="resume-experience">
-          <div className="flex items-center gap-2 border-b border-[#222222] pb-1 print:border-black" id="exp-header">
-            <Briefcase size={14} className="text-white print:text-black" />
-            <h3 className="font-sans font-bold text-sm text-white tracking-wider uppercase print:text-black">Professional Experience</h3>
+        <div className="resume-block-category" id="resume-experience">
+          <div className="resume-category-header" id="exp-header">
+            <Briefcase size={14} className="resume-category-icon" />
+            <h3 className="resume-category-title">Professional Experience</h3>
           </div>
 
-          <div className="flex flex-col gap-4" id="exp-timeline-list">
+          <div className="resume-timeline-list" id="exp-timeline-list">
             {EXPERIENCE_DATA.map((job) => {
               const isExpanded = expandedRole === job.role;
               return (
                 <div 
                   key={job.role}
-                  className="border border-[#222222] bg-[#111111]/40 print:bg-transparent print:border-0 print:border-b print:border-gray-200 pb-4 last:border-0"
+                  className="resume-timeline-job"
                   id={`resume-job-${job.role.toLowerCase().replace(/[^a-z0-9]/g, '')}`}
                 >
                   {/* Collapsible Header on screen, plain text on print */}
                   <div 
                     onClick={() => toggleRole(job.role)}
-                    className="flex justify-between items-start p-4 cursor-pointer hover:bg-white/[0.02] transition-colors print:cursor-default print:hover:bg-transparent print:p-0 print:py-2"
+                    className="job-collapsible-header"
                     id={`job-header-${job.role.toLowerCase().replace(/[^a-z0-9]/g, '')}`}
                   >
                     <div>
-                      <h4 className="font-sans font-bold text-base text-white print:text-black">{job.role}</h4>
-                      <span className="font-mono text-xs text-[#808080] print:text-gray-700">{job.organization}</span>
+                      <h4 className="job-role-title">{job.role}</h4>
+                      <span className="job-org-label">{job.organization}</span>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <span className="font-mono text-xs text-white bg-white/5 border border-white/15 px-2.5 py-0.5 print:text-black print:border-black print:bg-transparent">{job.period}</span>
-                      <span className="text-[#808080] print:hidden">
+                    <div className="job-meta-side">
+                      <span className="job-period-tag">{job.period}</span>
+                      <span className="job-chevron-icon print:hidden">
                         {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                       </span>
                     </div>
                   </div>
 
                   {/* Bullet points (Always visible on print, toggled on screen) */}
-                  <div className={`px-4 pb-4 font-sans text-xs text-[#808080] leading-relaxed flex flex-col gap-3 print:block print:p-0 print:text-gray-700 ${isExpanded ? 'block' : 'hidden md:block'}`} id="job-bullets">
-                    <p className="font-sans italic">{job.description}</p>
-                    <ul className="space-y-1.5 list-disc pl-4" id="job-bullets-list">
+                  <div className={`job-details-expand-box ${isExpanded ? '' : 'hidden'}`} id="job-bullets">
+                    <p className="job-desc-italic">{job.description}</p>
+                    <ul className="job-bullets-list" id="job-bullets-list">
                       {job.bullets.map((bullet, idx) => (
-                        <li key={idx} className="print:text-black">{bullet}</li>
+                        <li key={idx}>{bullet}</li>
                       ))}
                     </ul>
-                    <div className="flex flex-wrap gap-2 pt-2 print:hidden" id="job-tech-list">
+                    <div className="job-tech-stack-chips print:hidden" id="job-tech-list">
                       {job.techStack.map(tech => (
-                        <span key={tech} className="font-mono text-[9px] border border-[#222222] px-2 py-0.5 text-white">
+                        <span key={tech} className="job-tech-chip">
                           {tech}
                         </span>
                       ))}
@@ -155,43 +130,43 @@ export default function ResumeSection() {
         </div>
 
         {/* Education Section */}
-        <div className="flex flex-col gap-4" id="resume-education">
-          <div className="flex items-center gap-2 border-b border-[#222222] pb-1 print:border-black" id="edu-header">
-            <GraduationCap size={14} className="text-white print:text-black" />
-            <h3 className="font-sans font-bold text-sm text-white tracking-wider uppercase print:text-black">Education</h3>
+        <div className="resume-block-category" id="resume-education">
+          <div className="resume-category-header" id="edu-header">
+            <GraduationCap size={14} className="resume-category-icon" />
+            <h3 className="resume-category-title">Education</h3>
           </div>
 
-          <div className="flex flex-col gap-4" id="edu-list">
+          <div className="resume-timeline-list" id="edu-list">
             {EDUCATION_DATA.map((edu) => (
-              <div key={edu.degree} className="border border-[#222222] bg-[#111111]/20 p-4 print:border-0 print:p-0 print:bg-transparent" id="edu-card">
-                <div className="flex justify-between items-start gap-4">
+              <div key={edu.degree} className="education-card" id="edu-card">
+                <div className="education-header-row">
                   <div>
-                    <h4 className="font-sans font-bold text-base text-white print:text-black">{edu.degree}</h4>
-                    <span className="font-mono text-xs text-[#808080] print:text-gray-700">{edu.institution}</span>
+                    <h4 className="edu-degree-title">{edu.degree}</h4>
+                    <span className="edu-school-label">{edu.institution}</span>
                   </div>
-                  <span className="font-mono text-xs text-white bg-white/5 border border-white/10 px-2.5 py-0.5 print:text-black print:border-black print:bg-transparent shrink-0">{edu.period}</span>
+                  <span className="edu-period-tag">{edu.period}</span>
                 </div>
-                <p className="font-sans text-xs text-[#808080] mt-3 leading-relaxed print:text-gray-700">{edu.details}</p>
+                <p className="edu-desc">{edu.details}</p>
               </div>
             ))}
           </div>
         </div>
 
         {/* Certifications Block */}
-        <div className="flex flex-col gap-4" id="resume-certs">
-          <div className="flex items-center gap-2 border-b border-[#222222] pb-1 print:border-black" id="certs-header">
-            <Award size={14} className="text-white print:text-black" />
-            <h3 className="font-sans font-bold text-sm text-white tracking-wider uppercase print:text-black">Credentials & Certifications</h3>
+        <div className="resume-block-category" id="resume-certs">
+          <div className="resume-category-header" id="certs-header">
+            <Award size={14} className="resume-category-icon" />
+            <h3 className="resume-category-title">Credentials & Certifications</h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4" id="certs-grid">
+          <div className="certs-grid" id="certs-grid">
             {certs.map(c => (
-              <div key={c.name} className="border border-[#222222] bg-[#111111] p-4 flex flex-col justify-between print:border-0 print:p-0 print:bg-transparent" id="cert-item-card">
+              <div key={c.name} className="cert-card" id="cert-item-card">
                 <div>
-                  <h4 className="font-sans font-bold text-xs text-white print:text-black leading-snug">{c.name}</h4>
-                  <span className="font-mono text-[9px] text-[#808080] print:text-gray-700 block mt-1">{c.issuer}</span>
+                  <h4 className="cert-name-label">{c.name}</h4>
+                  <span className="cert-issuer-label">{c.issuer}</span>
                 </div>
-                <span className="font-mono text-[9px] text-white border border-white/20 bg-white/5 px-2 py-0.5 mt-4 self-start print:text-black print:border-black print:bg-transparent">
+                <span className="cert-status-tag">
                   {c.status.toUpperCase()}
                 </span>
               </div>

@@ -23,7 +23,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#131313] text-[#e2e2e2] flex flex-col font-sans select-none relative" id="app-root">
+    <div className="app-root" id="app-root">
       
       {/* Hidden Easter Egg Flag for CTF players */}
       {/* Flag is: flag{obsidian_protocols_activated_999} */}
@@ -37,7 +37,7 @@ export default function App() {
       />
 
       {/* Main View Container */}
-      <main className="flex-1 flex flex-col" id="app-main">
+      <main className="app-main" id="app-main">
         {activeTab === 'home' && (
           <HomeSection 
             setActiveTab={setActiveTab} 
@@ -49,14 +49,14 @@ export default function App() {
       </main>
 
       {/* Persistent Technical Banner for Quick Terminal Toggle */}
-      <div className="bg-[#0c0c0c] border-t border-[#222222] py-2 px-6 flex justify-between items-center text-[10px] font-mono text-[#808080] select-none print:hidden" id="terminal-link-box">
-        <div className="flex items-center gap-2">
-          <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+      <div className="terminal-link-box print:hidden" id="terminal-link-box">
+        <div className="connection-status">
+          <span className="status-dot"></span>
           <span>CONNECTION SECURE // 256-BIT SHA</span>
         </div>
         <button 
           onClick={() => setIsTerminalOpen(!isTerminalOpen)}
-          className="hover:text-white transition-colors cursor-pointer flex items-center gap-1.5"
+          className="btn-terminal-footer-hint"
           id="btn-terminal-footer-hint"
         >
           <span>[PRESS ` TO TOGGLE COMMAND TERMINAL]</span>

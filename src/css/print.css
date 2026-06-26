@@ -1,0 +1,182 @@
+/* --- PRINT RULES (@media print) --- */
+@media print {
+  body {
+    background-color: var(--text-white) !important;
+    color: var(--text-black) !important;
+  }
+  
+  .app-root {
+    background-color: var(--text-white) !important;
+    color: var(--text-black) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+  }
+  
+  .navbar, 
+  .app-footer, 
+  .terminal-panel, 
+  .terminal-link-box, 
+  .resume-action-bar {
+    display: none !important;
+  }
+  
+  .resume-section {
+    background-color: var(--text-white) !important;
+    color: var(--text-black) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+  }
+  
+  .resume-body {
+    gap: 32px;
+  }
+  
+  .resume-head-card {
+    border: none !important;
+    background-color: transparent !important;
+    padding: 0 !important;
+  }
+  
+  .resume-name {
+    color: var(--text-black) !important;
+  }
+  
+  .resume-subtitle {
+    color: var(--text-black) !important;
+  }
+  
+  .resume-brief-desc {
+    color: #374151 !important; /* text-gray-700 */
+  }
+  
+  .resume-contacts-box {
+    color: var(--text-black) !important;
+  }
+  
+  .resume-contact-icon {
+    color: var(--text-black) !important;
+  }
+  
+  .resume-contact-item a {
+    color: var(--text-black) !important;
+  }
+  
+  .resume-category-header {
+    border-bottom-color: var(--text-black) !important;
+  }
+  
+  .resume-category-icon {
+    color: var(--text-black) !important;
+  }
+  
+  .resume-category-title {
+    color: var(--text-black) !important;
+  }
+  
+  .resume-timeline-job {
+    background-color: transparent !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: 1px solid #e5e7eb !important; /* border-gray-200 */
+    padding-bottom: 16px !important;
+  }
+  
+  .resume-timeline-job:last-child {
+    border-bottom: none !important;
+  }
+  
+  .job-collapsible-header {
+    cursor: default !important;
+    padding: 0 !important;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+  }
+  
+  .job-collapsible-header:hover {
+    background-color: transparent !important;
+  }
+  
+  .job-role-title {
+    color: var(--text-black) !important;
+  }
+  
+  .job-org-label {
+    color: #374151 !important;
+  }
+  
+  .job-period-tag {
+    color: var(--text-black) !important;
+    border-color: var(--text-black) !important;
+    background-color: transparent !important;
+  }
+  
+  .job-chevron-icon {
+    display: none !important;
+  }
+  
+  .job-details-expand-box {
+    display: block !important;
+    padding: 0 !important;
+    color: #374151 !important;
+  }
+  
+  .job-bullets-list li {
+    color: var(--text-black) !important;
+  }
+  
+  .job-tech-stack-chips {
+    display: none !important;
+  }
+  
+  .education-card {
+    border: none !important;
+    padding: 0 !important;
+    background-color: transparent !important;
+  }
+  
+  .edu-degree-title {
+    color: var(--text-black) !important;
+  }
+  
+  .edu-school-label {
+    color: #374151 !important;
+  }
+  
+  .edu-period-tag {
+    color: var(--text-black) !important;
+    border-color: var(--text-black) !important;
+    background-color: transparent !important;
+  }
+  
+  .edu-desc {
+    color: #374151 !important;
+  }
+  
+  .certs-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+  
+  .cert-card {
+    border: none !important;
+    padding: 0 !important;
+    background-color: transparent !important;
+  }
+  
+  .cert-name-label {
+    color: var(--text-black) !important;
+  }
+  
+  .cert-issuer-label {
+    color: #374151 !important;
+  }
+  
+  .cert-status-tag {
+    color: var(--text-black) !important;
+    border-color: var(--text-black) !important;
+    background-color: transparent !important;
+  }
+}
