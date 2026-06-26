@@ -18,21 +18,48 @@ export default function ResumeSection() {
   };
 
   const certs = [
-    { name: 'OSCP (Offensive Security Certified Professional)', issuer: 'OffSec', status: 'In Training / Prep' },
-    { name: 'eJPT (Junior Penetration Tester v2)', issuer: 'INE Security', status: 'Certified (Credential ID: 824109)' },
-    { name: 'CompTIA Security+ (ce SY0-601)', issuer: 'CompTIA', status: 'Certified (Credential ID: SEC-99824)' }
+    {
+      name: 'Web Application Red Teaming',
+      issuer: 'TryHackMe',
+      status: 'In Progress'
+    },
+    {
+      name: 'Web Application Pentesting',
+      issuer: 'TryHackMe',
+      status: 'Completed — June 2026'
+    },
+    {
+      name: 'Jr Penetration Tester',
+      issuer: 'TryHackMe',
+      status: 'Completed — November 2025'
+    },
+    {
+      name: 'Web Fundamentals',
+      issuer: 'TryHackMe',
+      status: 'Completed — March 2026'
+    },
+    {
+      name: 'Cyber Security 101',
+      issuer: 'TryHackMe',
+      status: 'Completed — June 2025'
+    },
+    {
+      name: 'Pre Security',
+      issuer: 'TryHackMe',
+      status: 'Completed'
+    }
   ];
 
   return (
     <div className="resume-section bg-grid-pattern" id="resume-section">
-      
+
       {/* Print / Export Action Bar */}
       <div className="resume-action-bar print:hidden" id="print-action-bar">
         <div className="resume-action-title-box">
           <span className="section-label">_CURRICULUM_VITAE</span>
           <h2 className="projects-heading">Technical Resume</h2>
         </div>
-        
+
         <button
           onClick={handlePrint}
           className="btn-print-cv"
@@ -45,7 +72,7 @@ export default function ResumeSection() {
 
       {/* Printable Resume Container */}
       <div className="resume-body" id="resume-body">
-        
+
         {/* Header Block */}
         <div className="resume-head-card" id="resume-head-card">
           <div className="resume-name-title-box">
@@ -84,13 +111,13 @@ export default function ResumeSection() {
             {EXPERIENCE_DATA.map((job) => {
               const isExpanded = expandedRole === job.role;
               return (
-                <div 
+                <div
                   key={job.role}
                   className="resume-timeline-job"
                   id={`resume-job-${job.role.toLowerCase().replace(/[^a-z0-9]/g, '')}`}
                 >
                   {/* Collapsible Header on screen, plain text on print */}
-                  <div 
+                  <div
                     onClick={() => toggleRole(job.role)}
                     className="job-collapsible-header"
                     id={`job-header-${job.role.toLowerCase().replace(/[^a-z0-9]/g, '')}`}
