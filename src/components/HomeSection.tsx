@@ -236,11 +236,11 @@ export default function HomeSection({ setActiveTab, openTerminal }: HomeSectionP
             </div>
 
             {/* PicoCTF achievement block */}
-            <div className="ctf-achievement-card" id="ctf-card-pico">
+            <div className="ctf-achievement-card" id="ctf-card-pico" onClick={() => window.open('https://learn.cylabacademy.org/users/DarkDUchiha', '_blank')}>
               <div className="flex-1">
                 <span className="ctf-card-label">CHALLENGE SOLVER</span>
                 <h4 className="ctf-card-heading" id="pico-title">
-                  PicoCTF — 81+ challenges
+                  Cylabs Academy(PicoCTF) — 81+ challenges
                 </h4>
                 <p className="ctf-card-desc" id="pico-desc">
                   Focusing on Web Exploitation and Cryptography fundamentals in high-pressure competition environments.
