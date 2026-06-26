@@ -55,7 +55,7 @@ export default function HomeSection({ setActiveTab, openTerminal }: HomeSectionP
   const [hoveredStreak, setHoveredStreak] = useState<string | null>(null);
 
   // Unsplash profile image styled as black & white high contrast cyber portrait
-  const avatarUrl = 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400&h=400';
+  const avatarUrl = 'https://s6.imgcdn.dev/YeJj9w.jpg';
 
   return (
     <div className="home-section bg-grid-pattern" id="home-section">
@@ -79,7 +79,7 @@ export default function HomeSection({ setActiveTab, openTerminal }: HomeSectionP
 
             {/* Clinical technical badge under avatar */}
             <div className="avatar-badge" id="avatar-badge">
-              SL.PROV.SEC
+              KaviruN
             </div>
           </div>
         </div>

@@ -83,9 +83,9 @@ export default function ResumeSection() {
         <div className="resume-head-card" id="resume-head-card">
           <div className="resume-name-title-box">
             <h1 className="resume-name">KAVIRU NETHSARA</h1>
-            <span className="resume-subtitle">'Cybersecurity Student // CTF Competitor'</span>
+            <span className="resume-subtitle">Cybersecurity Student // CTF Competitor</span>
             <p className="resume-brief-desc">
-              Passionate offensive security researcher specializing in web penetration testing, automated API vulnerability assessments, and cryptography challenge engineering.
+             Cybersecurity student focused on offensive security, web exploitation, and CTF competitions.
             </p>
           </div>
 
@@ -93,15 +93,11 @@ export default function ResumeSection() {
           <div className="resume-contacts-box" id="resume-contacts">
             <div className="resume-contact-item">
               <Mail size={12} className="resume-contact-icon" />
-              <a href="mailto:kaviruyt@gmail.com">kaviruyt@gmail.com</a>
+              <a href="mailto:kaviruyt@gmail.com">kavirunethsara1@outlook.com</a>
             </div>
             <div className="resume-contact-item">
               <MapPin size={12} className="resume-contact-icon" />
               <span>Colombo, Sri Lanka</span>
-            </div>
-            <div className="resume-contact-item">
-              <Shield size={12} className="resume-contact-icon" />
-              <span className="resume-contact-bold">SL.PROV.SEC</span>
             </div>
           </div>
         </div>

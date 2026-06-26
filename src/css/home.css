@@ -39,6 +39,7 @@
   right: -2px;
   bottom: -2px;
   background: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3));
+  border-radius: 50%;
   filter: blur(4px);
   opacity: 0.3;
   transition: opacity var(--transition-medium);
@@ -80,12 +81,12 @@
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  filter: grayscale(100%) contrast(1.25) brightness(0.9);
+  transform: scale(1.05);
   transition: transform var(--transition-medium);
 }
 
 .avatar-border-box:hover .avatar-img {
-  transform: scale(1.05);
+  transform: scale(1.15);
 }
 
 .avatar-badge {
@@ -338,7 +339,7 @@
 
 .ctf-achievement-card:hover {
   background-color: rgba(255, 255, 255, 0.02);
-  
+
 }
 
 .ctf-card-label {
