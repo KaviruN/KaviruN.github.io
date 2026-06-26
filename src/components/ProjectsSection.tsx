@@ -1,10 +1,29 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Github } from 'lucide-react';
 import { PROJECTS_DATA } from '../data';
 import { Project } from '../types';
 
+const IFRAME_W = 1280;
+const IFRAME_H = 900;
+
 export default function ProjectsSection() {
-  const [selectedProject, setSelectedProject] = useState<Project>(PROJECTS_DATA[0]);
+  const [selectedProjectId, setSelectedProjectId] = useState<string>(PROJECTS_DATA[0].id);
+  const selectedProject = PROJECTS_DATA.find((p) => p.id === selectedProjectId) || PROJECTS_DATA[0];
+  const previewContainerRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const el = previewContainerRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([entry]) => {
+      const { width } = entry.contentRect;
+      if (width > 0) {
+        setScale(width / IFRAME_W);
+      }
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   return (
     <div className="projects-section bg-grid-pattern" id="projects-section">
@@ -29,7 +48,7 @@ export default function ProjectsSection() {
           {PROJECTS_DATA.map((proj) => (
             <div
               key={proj.id}
-              onClick={() => setSelectedProject(proj)}
+              onClick={() => setSelectedProjectId(proj.id)}
               className={`project-card ${selectedProject.id === proj.id ? 'active' : ''}`}
               id={`project-card-${proj.id}`}
             >
@@ -77,7 +96,7 @@ export default function ProjectsSection() {
                   className="detail-exec-btn"
                   id="detail-run-demo-btn"
                 >
-                 <a href="http://demos.darkduchiha.com" target="_blank" rel="noopener noreferrer">DEMO</a> 
+                 <a href={selectedProject.demoUrl} target="_blank" rel="noopener noreferrer">DEMO</a> 
                 </button>
               </div>
             </div>
@@ -102,14 +121,28 @@ export default function ProjectsSection() {
           </div>
 
           {/* Live Preview */}
-          <div className="live-preview" >
-            <div className="iframe-wrapper">
-              <iframe
-                src={selectedProject.demoUrl}
-                title={selectedProject.name}
-                className="preview-iframe"
-                sandbox="allow-scripts allow-same-origin"
-              />
+          <div className="live-preview-container" ref={previewContainerRef} style={{ width: '100%' }}>
+            <div
+              className="live-preview"
+              style={{ height: Math.round(IFRAME_H * scale) }}
+            >
+              <div
+                className="iframe-scaler"
+                style={{
+                  width: IFRAME_W,
+                  height: IFRAME_H,
+                  transform: `scale(${scale})`,
+                  transformOrigin: 'top left',
+                }}
+              >
+                <iframe
+                  src={selectedProject.demoUrl}
+                  title={selectedProject.name}
+                  className="preview-iframe"
+                  sandbox="allow-scripts allow-same-origin"
+                  scrolling="no"
+                />
+              </div>
             </div>
           </div>
 

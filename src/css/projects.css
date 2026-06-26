@@ -11,10 +11,28 @@
   gap: 48px;
 }
 
-.iframe-wrapper iframe{
+/* Scaled iframe live-preview */
+.live-preview {
+  position: relative;
   width: 100%;
-  min-height: 500px;
+  overflow: hidden;
+  background: #000;
+  border: 1px solid var(--border-color);
+}
 
+.iframe-scaler {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: top left;
+  pointer-events: none; /* treat like screenshot — no scroll inside */
+}
+
+.preview-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
 }
 
 
