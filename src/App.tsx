@@ -26,8 +26,7 @@ export default function App() {
     <div className="app-root" id="app-root">
       
       {/* Hidden Easter Egg Flag for CTF players */}
-      {/* Flag is: flag{obsidian_protocols_activated_999} */}
-      <div className="hidden" id="system-diagnostic-node" data-node-sec="flag{obsidian_protocols_activated_999}" />
+      <div className="hidden" id="system-diagnostic-node" data-node-sec="0000000" />
 
       {/* Navigation Header */}
       <Navbar 
