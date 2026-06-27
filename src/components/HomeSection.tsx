@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Github, Linkedin, Shield, Code, Wrench, ChevronRight, Activity, Calendar } from 'lucide-react';
-import { PROJECTS_DATA } from '../data';
+
 
 interface HomeSectionProps {
   setActiveTab: (tab: string) => void;
@@ -9,6 +9,7 @@ interface HomeSectionProps {
 
 export default function HomeSection({ setActiveTab, openTerminal }: HomeSectionProps) {
   const [typedActivity, setTypedActivity] = useState('');
+  const [streakDays, setStreakDays] = useState<{ name: string; active: boolean; desc: string }[]>([]);
   const [activityIndex, setActivityIndex] = useState(0);
   const activities = [
     'Analyzing binary payloads in Ghidra...',
@@ -16,6 +17,57 @@ export default function HomeSection({ setActiveTab, openTerminal }: HomeSectionP
     'Decoding Base64 cryptography vectors...',
     'Performing multi-threaded subnet fuzzing...'
   ];
+
+  async function getExactCurrentWeek() {
+    const response = await fetch('https://github-contributions-api.jogruber.de/v4/KaviruN?y=last');
+    const data = await response.json();
+    const contributions = data.contributions;
+
+    // 1. Find Monday's date for the current week
+    const today = new Date();
+    const dayOfWeek = today.getDay(); // 0 = Sun, 1 = Mon, ...
+    const distanceToMonday = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
+
+    const mondayDate = new Date(today);
+    mondayDate.setDate(today.getDate() + distanceToMonday);
+
+    // 2. Build a solid 7-day array structure starting from that Monday
+    const completeWeek = [];
+    for (let i = 0; i < 7; i++) {
+      const nextDay = new Date(mondayDate);
+      nextDay.setDate(mondayDate.getDate() + i);
+      const dateString = nextDay.toISOString().split('T')[0];
+
+      // Check if the API has data for this day
+      const apiMatch = contributions.find((item: any) => item.date === dateString);
+
+      if (apiMatch) {
+        // Use real data if it exists
+        completeWeek.push(apiMatch);
+      } else {
+        // Generate a placeholder day if it doesn't exist yet (future days)
+        completeWeek.push({
+          date: dateString,
+          count: 0,
+          level: 0
+        });
+      }
+    }
+
+    const weekDays = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+    let streakDays = [];
+
+    for(const i in completeWeek){
+      streakDays.push({
+        name: weekDays[i],
+        active: completeWeek[i].count > 0,
+        desc: `Completed ${completeWeek[i].count} activities on ${completeWeek[i].date}`
+      });
+    }
+
+    return streakDays;
+
+  }
   // Typing effect for current activity
   useEffect(() => {
     let currentText = '';
@@ -40,16 +92,10 @@ export default function HomeSection({ setActiveTab, openTerminal }: HomeSectionP
     return () => clearInterval(typingInterval);
   }, [activityIndex]);
 
-  // Streak data details on hover
-  const streakDays = [
-    { name: 'MON', active: true, desc: 'Solved 4 TryHackMe rooms' },
-    { name: 'TUE', active: true, desc: 'Built automated API scanner' },
-    { name: 'WED', active: true, desc: 'Reported high-severity BOLA flaw' },
-    { name: 'THU', active: true, desc: 'Solved 6 PicoCTF cryptography labs' },
-    { name: 'FRI', active: true, desc: 'Participated in private bug hunt' },
-    { name: 'SAT', active: false, desc: 'Stale connection / Routine pause' },
-    { name: 'SUN', active: false, desc: 'Stale connection / Server update' }
-  ];
+  // Fetch streak data on mount
+  useEffect(() => {
+    getExactCurrentWeek().then(setStreakDays);
+  }, []);
 
   const [hoveredStreak, setHoveredStreak] = useState<string | null>(null);
 
