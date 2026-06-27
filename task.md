@@ -1,0 +1,97 @@
+# Portfolio TODO — KaviruN.github.io
+> Derived from the cybersecurity portfolio checklist gap analysis.
+> Status key: `[ ]` todo · `[/]` in progress · `[x]` done
+
+---
+
+## 🔴 CRITICAL — Fix These First
+
+> Highest ROI. These are what recruiters notice in the first 60 seconds.
+
+- [ ] **Link the blog from the portfolio**
+  - Add blog URL to [`Navbar.tsx`](file:///home/darkduchiha/KaviruN.github.io/src/components/Navbar.tsx) as a nav item or external link
+  - Add blog button to hero actions in [`HomeSection.tsx`](file:///home/darkduchiha/KaviruN.github.io/src/components/HomeSection.tsx#L99-L122)
+  - Add blog link to [`Footer.tsx`](file:///home/darkduchiha/KaviruN.github.io/src/components/Footer.tsx)
+  - _Context: 30+ posts already exist — zero effort content, just needs a link_
+
+- [ ] **Add cybersecurity projects to ProjectsSection**
+  - Add 1–2 real cyber projects as new entries in [`data.ts`](file:///home/darkduchiha/KaviruN.github.io/src/data.ts) `PROJECTS_DATA[]`
+  - Group all CTF scripts into a single GitHub repo (e.g. `ctf-tooling`) with a README listing each script, what challenge it was for, and the technique used
+  - Add `ctf-tooling` as a single project card: _"CTF Tooling & Automation — Python exploitation scripts built during live competitions"_
+  - Update `WiFi Pass Tool` description to frame it as a security scripting project, not "legacy early learning"
+  - _Context: Content exists, just needs `data.ts` entries and a GitHub repo_
+
+- [ ] **Expand hero bio to 100–150 words**
+  - Edit the `<p>` in [`HomeSection.tsx`](file:///home/darkduchiha/KaviruN.github.io/src/components/HomeSection.tsx#L94-L96)
+  - Must include: (1) why you started cybersecurity, (2) what you've built/solved, (3) what role you're targeting
+  - Current bio is ~30 words — needs a 4× expansion
+
+- [ ] **Fix or remove the hardcoded streak data**
+  - The `streakDays` array in [`HomeSection.tsx`](file:///home/darkduchiha/KaviruN.github.io/src/components/HomeSection.tsx#L45-L53) is static fake booleans
+  - Option A: Replace with real THM API data (if public API is available)
+  - Option B: Remove the streak UI entirely and replace with a real stat (e.g. room count, badge count)
+  - Option C: Change the label to make clear it's illustrative, not live data
+  - _This is the only item in the portfolio that's actively misleading_
+
+  **fix the priview for the tools**
+
+---
+
+## 🟡 MEDIUM — Do These Next
+
+- [ ] **Make 2–3 room write-ups public**
+  - Pick your 2–3 best private room write-ups from your blog
+  - Publish them publicly on your blog platform
+  - Link directly to each one from the portfolio (featured write-ups section or CTF cards)
+
+- [ ] **Add role labels to project and cert cards**
+  - Add a `targetRole` field to the `Project` type in [`types.ts`](file:///home/darkduchiha/KaviruN.github.io/src/types.ts)
+  - Populate it in [`data.ts`](file:///home/darkduchiha/KaviruN.github.io/src/data.ts) for each project (e.g. `"Penetration Tester"`, `"Bug Bounty Hunter"`)
+  - Display it as a tag on project cards in [`ProjectsSection.tsx`](file:///home/darkduchiha/KaviruN.github.io/src/components/ProjectsSection.tsx)
+  - Do the same for cert cards in [`ResumeSection.tsx`](file:///home/darkduchiha/KaviruN.github.io/src/components/ResumeSection.tsx)
+
+- [ ] **Add 1–2 PAO mini case studies to CTF cards**
+  - Expand the CTF achievement cards in [`HomeSection.tsx`](file:///home/darkduchiha/KaviruN.github.io/src/components/HomeSection.tsx#L218-L268)
+  - Each card should have: Problem / Action / Outcome (2–3 sentences total)
+  - Example: _"Problem: BOLA flaw in competition API. Action: Enumerated user IDs with a Python script. Outcome: Extracted admin data, reported finding, awarded Best Performing cert."_
+
+- [ ] **Add a learning path progress display**
+  - Add a small progress section to HomeSection or ResumeSection
+  - Show rooms completed per path: Pre-Security, Jr Pen Tester, Web App Pentesting, Web App Red Teaming
+  - Can be a simple progress bar or stat grid — no API required, just accurate static numbers
+
+---
+
+## 🟢 NICE-TO-HAVE — When You Have Time
+
+- [ ] **Embed TryHackMe badge widget**
+  - Replace plain-text "top 2% globally" in CTF card with the actual THM embeddable badge image
+  - THM badge URL: `https://tryhackme-badges.s3.amazonaws.com/KaviruN.png`
+  - Add `<img>` tag with a link to your THM profile
+
+- [ ] **Link CTF competition results**
+  - Add CTFtime.org profile link if you have one
+  - Or add a GitHub repo of competition write-ups with results
+
+- [ ] **Add a "last updated" timestamp**
+  - Small text in the footer or resume section (e.g. _"Last updated: June 2026"_)
+  - Signals the portfolio is actively maintained
+
+- [ ] **Add a blog feed or latest post preview**
+  - Surface 2–3 latest blog post titles + links on the Home page
+  - If your blog has an RSS feed, this can be fetched dynamically via the existing API setup
+
+---
+
+## ✅ Already Done — No Action Needed
+
+- [x] TryHackMe profile linked (CTF section)
+- [x] 6 TryHackMe certificates with PDF viewer
+- [x] GitHub + LinkedIn linked in hero
+- [x] CTF competition experience in `EXPERIENCE_DATA`
+- [x] BIT Cybersecurity degree in `EDUCATION_DATA`
+- [x] Tools listed (Burp Suite, Nmap, Metasploit)
+- [x] First-person hero bio exists (short — needs expansion above)
+- [x] 30+ blog posts documenting THM challenges _(just needs linking)_
+- [x] CTF scripts exist _(just needs a `ctf-tooling` GitHub repo + data.ts entry)_
+- [x] 1–2 cybersecurity projects exist _(just needs data.ts entries)_
