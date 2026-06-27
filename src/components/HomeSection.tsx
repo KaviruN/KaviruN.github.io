@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Github, Linkedin, Shield, Code, Wrench, ChevronRight, Activity, Calendar } from 'lucide-react';
-import { PROJECTS_DATA} from '../data';
+import { PROJECTS_DATA } from '../data';
 
 interface HomeSectionProps {
   setActiveTab: (tab: string) => void;
@@ -16,7 +16,6 @@ export default function HomeSection({ setActiveTab, openTerminal }: HomeSectionP
     'Decoding Base64 cryptography vectors...',
     'Performing multi-threaded subnet fuzzing...'
   ];
-
   // Typing effect for current activity
   useEffect(() => {
     let currentText = '';
@@ -307,7 +306,6 @@ export default function HomeSection({ setActiveTab, openTerminal }: HomeSectionP
                 </span>
               </div>
             </div>
-
             {/* Middle Section: Typing current activity */}
             <div className="dashboard-divider-block" id="current-activity-block">
               <span className="dashboard-section-label">
