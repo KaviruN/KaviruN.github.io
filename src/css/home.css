@@ -451,6 +451,7 @@
   align-items: center;
   gap: 8px;
   flex: 1;
+  margin-right: 2px;
 }
 
 .streak-visual-box {

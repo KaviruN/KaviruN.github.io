@@ -1,16 +1,67 @@
 import { useState, useEffect } from 'react';
 import { Github, Linkedin, Shield, Code, Wrench, ChevronRight, Activity, Calendar } from 'lucide-react';
 
-
 interface HomeSectionProps {
   setActiveTab: (tab: string) => void;
   openTerminal: () => void;
 }
 
+export async function getGitHubStats() {
+  // Single request to pull all recent data
+  const response = await fetch('https://github-contributions-api.jogruber.de/v4/KaviruN?y=last');
+  const data = await response.json();
+  const contributions = data.contributions;
+
+  // 1. Calculate the calendar date for Monday of the current week
+  const today = new Date();
+  const dayOfWeek = today.getDay(); // 0 = Sun, 1 = Mon, ...
+  const distanceToMonday = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
+
+  const mondayDate = new Date(today);
+  mondayDate.setDate(today.getDate() + distanceToMonday);
+
+  const weekDays = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+  const streakDays = [];
+
+  // 2. Build the perfect 7-day calendar week array
+  for (let i = 0; i < 7; i++) {
+    const nextDay = new Date(mondayDate);
+    nextDay.setDate(mondayDate.getDate() + i);
+    const dateString = nextDay.toISOString().split('T')[0];
+
+    const apiMatch = contributions.find((item: any) => item.date === dateString);
+    const count = apiMatch ? apiMatch.count : 0;
+
+    streakDays.push({
+      name: weekDays[i],
+      active: count > 0,
+      desc: `Completed ${count} activities on ${dateString}`
+    });
+  }
+
+  // 3. Helper function to calculate uptime from a specific slice of data
+  const calculateUptime = (daysArray: any[]) => {
+    if (daysArray.length === 0) return '0.0%';
+    const activeDays = daysArray.filter(day => day.count > 0).length;
+    return `${((activeDays / daysArray.length) * 100).toFixed(1)}%`;
+  };
+
+  // 4. Calculate Uptime Metrics from the same dataset
+  const weeklyUptime = calculateUptime(contributions.slice(-7));
+  const monthlyUptime = calculateUptime(contributions.slice(-30));
+
+  // Return everything in one shot
+  return { streakDays, weeklyUptime, monthlyUptime };
+}
+
 export default function HomeSection({ setActiveTab, openTerminal }: HomeSectionProps) {
   const [typedActivity, setTypedActivity] = useState('');
-  const [streakDays, setStreakDays] = useState<{ name: string; active: boolean; desc: string }[]>([]);
   const [activityIndex, setActivityIndex] = useState(0);
+  const [streakDays, setStreakDays] = useState<{ name: string; active: boolean; desc: string }[]>([]);
+  const [weeklyUptime, setWeeklyUptime] = useState('--.--%');
+  const [monthlyUptime, setMonthlyUptime] = useState('--.--%');
+  const [hoveredStreak, setHoveredStreak] = useState<string | null>(null);
+
   const activities = [
     'Analyzing binary payloads in Ghidra...',
     'Configuring reverse shell listener on Port 4444...',
@@ -18,56 +69,6 @@ export default function HomeSection({ setActiveTab, openTerminal }: HomeSectionP
     'Performing multi-threaded subnet fuzzing...'
   ];
 
-  async function getExactCurrentWeek() {
-    const response = await fetch('https://github-contributions-api.jogruber.de/v4/KaviruN?y=last');
-    const data = await response.json();
-    const contributions = data.contributions;
-
-    // 1. Find Monday's date for the current week
-    const today = new Date();
-    const dayOfWeek = today.getDay(); // 0 = Sun, 1 = Mon, ...
-    const distanceToMonday = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
-
-    const mondayDate = new Date(today);
-    mondayDate.setDate(today.getDate() + distanceToMonday);
-
-    // 2. Build a solid 7-day array structure starting from that Monday
-    const completeWeek = [];
-    for (let i = 0; i < 7; i++) {
-      const nextDay = new Date(mondayDate);
-      nextDay.setDate(mondayDate.getDate() + i);
-      const dateString = nextDay.toISOString().split('T')[0];
-
-      // Check if the API has data for this day
-      const apiMatch = contributions.find((item: any) => item.date === dateString);
-
-      if (apiMatch) {
-        // Use real data if it exists
-        completeWeek.push(apiMatch);
-      } else {
-        // Generate a placeholder day if it doesn't exist yet (future days)
-        completeWeek.push({
-          date: dateString,
-          count: 0,
-          level: 0
-        });
-      }
-    }
-
-    const weekDays = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
-    let streakDays = [];
-
-    for(const i in completeWeek){
-      streakDays.push({
-        name: weekDays[i],
-        active: completeWeek[i].count > 0,
-        desc: `Completed ${completeWeek[i].count} activities on ${completeWeek[i].date}`
-      });
-    }
-
-    return streakDays;
-
-  }
   // Typing effect for current activity
   useEffect(() => {
     let currentText = '';
@@ -92,15 +93,16 @@ export default function HomeSection({ setActiveTab, openTerminal }: HomeSectionP
     return () => clearInterval(typingInterval);
   }, [activityIndex]);
 
-  // Fetch streak data on mount
+  // Fetch GitHub stats (streak + uptime) on mount
   useEffect(() => {
-    getExactCurrentWeek().then(setStreakDays);
+    getGitHubStats().then(({ streakDays, weeklyUptime, monthlyUptime }) => {
+      setStreakDays(streakDays);
+      setWeeklyUptime(weeklyUptime);
+      setMonthlyUptime(monthlyUptime);
+    });
   }, []);
 
-  const [hoveredStreak, setHoveredStreak] = useState<string | null>(null);
-
-  // Unsplash profile image styled as black & white high contrast cyber portrait
-  const avatarUrl = 'https://s6.imgcdn.dev/YeJj9w.jpg';
+  const avatarUrl = '/1751946116981.jpeg';
 
   return (
     <div className="home-section bg-grid-pattern" id="home-section">
@@ -371,7 +373,12 @@ export default function HomeSection({ setActiveTab, openTerminal }: HomeSectionP
             {/* Bottom Row: Uptime */}
             <div className="dashboard-uptime-row" id="uptime-block">
               <span className="dashboard-section-label">UPTIME</span>
-              <span className="uptime-value" id="uptime-val">99.9%</span>
+              <span className="uptime-value" id="uptime-val-weekly" title="7-day uptime">
+                7D: {weeklyUptime}
+              </span>
+              <span className="uptime-value" id="uptime-val-monthly" title="30-day uptime">
+                30D: {monthlyUptime}
+              </span>
             </div>
 
           </div>
