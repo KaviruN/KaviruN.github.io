@@ -17,10 +17,10 @@ export default function TerminalOverlay({ isOpen, onClose }: TerminalOverlayProp
   const [isMaximized, setIsMaximized] = useState(false);
   const [inputVal, setInputVal] = useState('');
   const [history, setHistory] = useState<CommandHistory[]>([
-    { input: '', output: 'DARKDUCHIHA [Version 1.0.4] SEC_CORE_ONLINE\nType "help" to view available terminal commands.\n', type: 'system' }
+    { input: '', output: 'DARKDUCHIHA [Version 1.0.4]\nType "help" to view available terminal commands.\n', type: 'system' }
   ]);
   const [sudoUnlocked, setSudoUnlocked] = useState(false);
-  
+
   const terminalEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -40,7 +40,7 @@ export default function TerminalOverlay({ isOpen, onClose }: TerminalOverlayProp
     const trimmed = cmdStr.trim().toLowerCase();
     const args = trimmed.split(' ');
     const command = args[0];
-    
+
     let reply = '';
     let replyType: 'input' | 'system' | 'success' | 'error' = 'system';
 
@@ -66,9 +66,9 @@ Available commands:
         break;
       case 'about':
         reply = `
-DARKDUCHIHA // Kavir Nethsara
+DARKDUCHIHA // Kaviru Nethsara
 ----------------------------
-Cybersecurity Undergrad based in Sri Lanka.
+Cybersecurity Undergrad.
 Currently exploring Bug Bounty hunting (HackerOne/Bugcrowd) and active CTF challenges.
 Specializing in: API security auditing, automation tools and evasion research.
         `;
@@ -76,8 +76,8 @@ Specializing in: API security auditing, automation tools and evasion research.
       case 'skills':
         reply = `
 LANGUAGES:     Python, Java, JavaScript, Bash, Go
-CYBERSECURITY: Web Exploitation, Pentesting, Bug Bounty, Malware Analysis, Reverse Engineering
-TOOLS:         Burp Suite, Nmap, Metasploit, Wireshark, Ghidra, GDB, Docker
+CYBERSECURITY: Web Exploitation, Pentesting, Bug Bounty,  Reverse Engineering
+TOOLS:         Burp Suite, Nmap, Wireshark, Ghidra, GDB, Docker
         `;
         replyType = 'success';
         break;
@@ -99,7 +99,7 @@ Hint: There is a hidden flag somewhere in the web page code... Search carefully 
           `;
         } else {
           const flagAttempt = args[1];
-          if (flagAttempt === 'flag{obsidian_protocols_activated_999}' || flagAttempt === '{obsidian_protocols_activated_999}' || flagAttempt === 'obsidian_protocols_activated_999') {
+          if (flagAttempt === 'flag{MDAwMDAwMA}' || flagAttempt === '{MDAwMDAwMA}' || flagAttempt === 'MDAwMDAwMA') {
             setSudoUnlocked(true);
             reply = `
 [SUCCESS] FLAG SUBMITTED CORRECTLY!
@@ -153,7 +153,7 @@ Now typing prefix shows 'root@darkduchiha:~#'.
   if (!isOpen) return null;
 
   return (
-    <div 
+    <div
       className={`terminal-panel ${isMaximized ? 'maximized' : ''} ${sudoUnlocked ? 'sudo-unlocked' : ''}`}
       id="terminal-panel"
     >
@@ -170,18 +170,18 @@ Now typing prefix shows 'root@darkduchiha:~#'.
             </span>
           )}
         </div>
-        
+
         <div className="terminal-title-actions">
-          <button 
-            onClick={() => setIsMaximized(!isMaximized)} 
+          <button
+            onClick={() => setIsMaximized(!isMaximized)}
             className="terminal-action-btn"
             title={isMaximized ? 'Minimize Window' : 'Maximize Window'}
             id="terminal-btn-maximize"
           >
             {isMaximized ? <Minimize2 size={13} /> : <Maximize2 size={13} />}
           </button>
-          <button 
-            onClick={onClose} 
+          <button
+            onClick={onClose}
             className="terminal-action-btn terminal-action-btn-close"
             title="Close Terminal"
             id="terminal-btn-close"
@@ -192,8 +192,8 @@ Now typing prefix shows 'root@darkduchiha:~#'.
       </div>
 
       {/* Terminal Content Buffer */}
-      <div 
-        className="terminal-buffer" 
+      <div
+        className="terminal-buffer"
         onClick={() => inputRef.current?.focus()}
         id="terminal-buffer"
       >
