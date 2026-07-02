@@ -32,11 +32,7 @@ export default function Navbar({ activeTab, setActiveTab, toggleTerminal }: Navb
             <span className="nav-link-underline"></span>
           )}
         </button>
-        <button
-          id="nav-link-projects"
-        >
-          <a href="https://kavirun.github.io/blog/" target="_blank" rel="noopener noreferrer">BLOG</a>
-        </button>
+
         <button
           onClick={() => setActiveTab('projects')}
           className={`nav-link ${activeTab === 'projects' ? 'active' : ''}`}
@@ -46,6 +42,12 @@ export default function Navbar({ activeTab, setActiveTab, toggleTerminal }: Navb
           {activeTab === 'projects' && (
             <span className="nav-link-underline"></span>
           )}
+        </button>
+        <button
+          id="nav-link-blog"
+          className="nav-link-blog"
+        >
+          <a href="https://kavirun.github.io/blog/" target="_blank" rel="noopener noreferrer">BLOG ↗</a>
         </button>
         <button
           onClick={() => setActiveTab('resume')}
