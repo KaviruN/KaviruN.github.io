@@ -8,32 +8,12 @@
 
 > Highest ROI. These are what recruiters notice in the first 60 seconds.
 
-- [ ] **Link the blog from the portfolio**
-  - Add blog URL to [`Navbar.tsx`](file:///home/darkduchiha/KaviruN.github.io/src/components/Navbar.tsx) as a nav item or external link
-  - Add blog button to hero actions in [`HomeSection.tsx`](file:///home/darkduchiha/KaviruN.github.io/src/components/HomeSection.tsx#L99-L122)
-  - Add blog link to [`Footer.tsx`](file:///home/darkduchiha/KaviruN.github.io/src/components/Footer.tsx)
-  - _Context: 30+ posts already exist — zero effort content, just needs a link_
-
-- [ ] **Add cybersecurity projects to ProjectsSection**
-  - Add 1–2 real cyber projects as new entries in [`data.ts`](file:///home/darkduchiha/KaviruN.github.io/src/data.ts) `PROJECTS_DATA[]`
-  - Group all CTF scripts into a single GitHub repo (e.g. `ctf-tooling`) with a README listing each script, what challenge it was for, and the technique used
-  - Add `ctf-tooling` as a single project card: _"CTF Tooling & Automation — Python exploitation scripts built during live competitions"_
-  - Update `WiFi Pass Tool` description to frame it as a security scripting project, not "legacy early learning"
-  - _Context: Content exists, just needs `data.ts` entries and a GitHub repo_
 
 - [ ] **Expand hero bio to 100–150 words**
   - Edit the `<p>` in [`HomeSection.tsx`](file:///home/darkduchiha/KaviruN.github.io/src/components/HomeSection.tsx#L94-L96)
   - Must include: (1) why you started cybersecurity, (2) what you've built/solved, (3) what role you're targeting
   - Current bio is ~30 words — needs a 4× expansion
 
-- [ ] **Fix or remove the hardcoded streak data**
-  - The `streakDays` array in [`HomeSection.tsx`](file:///home/darkduchiha/KaviruN.github.io/src/components/HomeSection.tsx#L45-L53) is static fake booleans
-  - Option A: Replace with real THM API data (if public API is available)
-  - Option B: Remove the streak UI entirely and replace with a real stat (e.g. room count, badge count)
-  - Option C: Change the label to make clear it's illustrative, not live data
-  - _This is the only item in the portfolio that's actively misleading_
-
-  **fix the priview for the tools**
 
 ---
 

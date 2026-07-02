@@ -544,3 +544,51 @@
   font-size: 18px;
   color: var(--text-white);
 }
+
+/* Profile / Bio Section */
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.profile-bio-card {
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-secondary);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+
+.profile-bio-index {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+
+.profile-bio-text {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.85;
+  max-width: 860px;
+}
+
+@media (min-width: 640px) {
+  .profile-bio-text {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 768px) {
+  .profile-bio-text {
+    font-size: 15px;
+  }
+}
+
+.profile-bio-highlight {
+  color: var(--text-white);
+  font-weight: 600;
+}

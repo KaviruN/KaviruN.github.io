@@ -139,7 +139,7 @@ export default function HomeSection({ setActiveTab, openTerminal }: HomeSectionP
           </h1>
 
           <p className="hero-subtext" id="hero-subtext">
-            Cybersecurity undergrad from Sri Lanka. I grind CTFs, break things to learn how they work, and write about it. Currently exploring bug bounty — not for the money, for the hunt.
+            Cybersecurity undergrad. I pull systems apart to understand how they break — then build the tools to prove it.
           </p>
         </div>
 
@@ -165,6 +165,31 @@ export default function HomeSection({ setActiveTab, openTerminal }: HomeSectionP
             <Linkedin size={14} />
             <span>LINKEDIN</span>
           </a>
+        </div>
+      </div>
+
+      {/* Profile / Bio Section */}
+      <div className="profile-section" id="profile-section">
+        <div className="section-label-header" id="profile-header">
+          <span className="section-label">_PROFILE</span>
+        </div>
+
+        <div className="profile-bio-card" id="profile-bio-card">
+          <div className="profile-bio-index" id="profile-bio-index">[00]</div>
+          <p className="profile-bio-text" id="profile-bio-text">
+            I fell into cybersecurity because I've always had an obsession with pulling things apart
+            to see how they actually tick. What started as curiosity about how systems break quickly
+            evolved into a drive to understand deep offensive security. As a Cybersecurity
+            undergraduate, I spend my time grinding Jeopardy-style CTFs, coordinating for my team
+            <span className="profile-bio-highlight"> Exploit-Syndicate</span>, and clearing over
+            100 TryHackMe rooms. But I don't just break things — I build them too, writing custom
+            Python scripts for request handling and developing security tools like
+            <span className="profile-bio-highlight"> PixelGuard</span>. Lately, I've been diving
+            into bug bounties for the sheer thrill of the hunt. I'm currently targeting
+            <span className="profile-bio-highlight"> offensive security and red team internships</span>{" "}
+            where I can bring my hands-on scripting, tool-building, and pentesting mindset to
+            real-world infrastructure.
+          </p>
         </div>
       </div>
 
