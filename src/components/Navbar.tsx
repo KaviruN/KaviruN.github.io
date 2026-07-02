@@ -11,8 +11,8 @@ export default function Navbar({ activeTab, setActiveTab, toggleTerminal }: Navb
   return (
     <nav className="navbar" id="app-navbar">
       {/* Brand logo left */}
-      <div 
-        onClick={() => setActiveTab('home')} 
+      <div
+        onClick={() => setActiveTab('home')}
         className="navbar-logo"
         id="navbar-logo"
       >
@@ -31,6 +31,11 @@ export default function Navbar({ activeTab, setActiveTab, toggleTerminal }: Navb
           {activeTab === 'home' && (
             <span className="nav-link-underline"></span>
           )}
+        </button>
+        <button
+          id="nav-link-projects"
+        >
+          <a href="https://kavirun.github.io/blog/" target="_blank" rel="noopener noreferrer">BLOG</a>
         </button>
         <button
           onClick={() => setActiveTab('projects')}
