@@ -181,7 +181,7 @@ export default function HomeSection({ setActiveTab, openTerminal }: HomeSectionP
             to see how they actually tick. What started as curiosity about how systems break quickly
             evolved into a drive to understand deep offensive security. As a Cybersecurity
             undergraduate, I spend my time grinding Jeopardy-style CTFs, coordinating for my team
-            <span className="profile-bio-highlight"> Exploit-Syndicate</span>, and clearing over
+            <span className="profile-bio-highlight"> ExploitSyndicate</span>, and clearing over
             100 TryHackMe rooms. But I don't just break things — I build them too, writing custom
             Python scripts for request handling and developing security tools like
             <span className="profile-bio-highlight"> PixelGuard</span>. Lately, I've been diving

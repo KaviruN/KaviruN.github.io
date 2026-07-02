@@ -2,15 +2,28 @@
 .projects-section {
   flex: 1;
   background-color: var(--bg-primary);
-  padding: 48px 24px;
+  padding: 32px 16px;
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 32px;
 }
 
+@media (min-width: 640px) {
+  .projects-section {
+    padding: 48px 24px;
+    gap: 48px;
+  }
+}
+
+@media (min-width: 768px) {
+  .projects-section {
+    padding: 96px 48px;
+    gap: 48px;
+  }
+}
 /* Scaled iframe live-preview */
 .live-preview {
   position: relative;
@@ -25,7 +38,7 @@
   top: 0;
   left: 0;
   transform-origin: top left;
-  pointer-events: none; /* treat like screenshot — no scroll inside */
+  pointer-events: none;
 }
 
 .preview-iframe {
@@ -33,14 +46,6 @@
   height: 100%;
   border: none;
   display: block;
-}
-
-
-
-@media (min-width: 768px) {
-  .projects-section {
-    padding: 96px 48px;
-  }
 }
 
 .projects-header {
@@ -95,7 +100,35 @@
 .projects-list-col {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
+  max-height: 50vh;
+  overflow-y: auto;
+  padding-right: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+}
+
+@media (min-width: 768px) {
+  .projects-list-col {
+    max-height: 70vh;
+  }
+}
+
+.projects-list-col::-webkit-scrollbar {
+  width: 4px;
+}
+
+.projects-list-col::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.projects-list-col::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+}
+
+.projects-list-col::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.35);
 }
 
 @media (min-width: 1024px) {

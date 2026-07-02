@@ -114,6 +114,8 @@ a {
   font-family: var(--font-sans);
   user-select: none;
   position: relative;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 .app-main {

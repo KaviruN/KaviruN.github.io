@@ -4,16 +4,6 @@
 
 ---
 
-## 🔴 CRITICAL — Fix These First
-
-> Highest ROI. These are what recruiters notice in the first 60 seconds.
-
-
-- [ ] **Expand hero bio to 100–150 words**
-  - Edit the `<p>` in [`HomeSection.tsx`](file:///home/darkduchiha/KaviruN.github.io/src/components/HomeSection.tsx#L94-L96)
-  - Must include: (1) why you started cybersecurity, (2) what you've built/solved, (3) what role you're targeting
-  - Current bio is ~30 words — needs a 4× expansion
-
 
 ---
 

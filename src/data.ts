@@ -17,10 +17,10 @@ export const PROJECTS_DATA: Project[] = [
   {
     id: 'MindEase',
     name: 'Mind Ease',
-    category: 'FUll Stack Cryptography Project',
+    category: 'FUll Stack AI Project',
     description: 'Advanced pixel-level encryption and LSB steganography combined Encrypt entire images or hide secret messages invisibly inside them.',
     longDescription: 'This is a Django-based web application designed to provide mental health support through an AI-powered chat assistant. The application allows users to interact with the AI, save chat history, and retrieve past conversations.',
-    languages: ['javascript', 'css'],
+    languages: ['Python','javascript', 'css'],
     tools: ['React', 'Threejs'],
     githubUrl: 'https://github.com/KaviruN/MindEase',
     imgSrc: '/MIndEase.png'
