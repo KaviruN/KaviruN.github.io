@@ -12,7 +12,7 @@ export default function Footer({ setActiveTab }: FooterProps) {
       </div>
       <div className="footer-links">
         <a 
-          href="https://github.com/darkduchiha" 
+          href="https://github.com/KaviruN" 
           target="_blank" 
           rel="noopener noreferrer" 
           id="footer-github"
@@ -20,7 +20,7 @@ export default function Footer({ setActiveTab }: FooterProps) {
           GITHUB
         </a>
         <a 
-          href="https://linkedin.com/in/kavirunethsara" 
+          href="https://linkedin.com/in/kaviru-n" 
           target="_blank" 
           rel="noopener noreferrer" 
           id="footer-linkedin"
@@ -28,7 +28,7 @@ export default function Footer({ setActiveTab }: FooterProps) {
           LINKEDIN
         </a>
         <a 
-          href="mailto:kaviruyt@gmail.com" 
+          href="mailto:kavirunethsara1@outlook.com" 
           id="footer-email"
         >
           EMAIL
