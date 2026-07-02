@@ -3,6 +3,30 @@ import { Project, CtfAchievement, ExperienceItem, EducationItem } from './types'
 export const PROJECTS_DATA: Project[] = [
 
   {
+    id: 'PixelGuard',
+    name: 'Pixel Guard',
+    category: 'FUll Stack Cryptography Project',
+    description: 'Advanced pixel-level encryption and LSB steganography combined Encrypt entire images or hide secret messages invisibly inside them.',
+    longDescription: 'Pixel Guard is a dual purpose security tool used for image encryption and decryption. It uses NumPy for high-speed mathematical pixel transformations and Flask for seamless web interface.',
+    languages: ['python','javascript', 'css', 'html'],
+    tools: ['Flask', 'numpy', 'PIL'],
+    githubUrl: 'https://github.com/KaviruN/PixelGuard',
+    imgSrc: 'https://raw.githubusercontent.com/KaviruN/PixelGuard/main/resources/image%26stegano.png'
+  },
+
+  {
+    id: 'MindEase',
+    name: 'Mind Ease',
+    category: 'FUll Stack Cryptography Project',
+    description: 'Advanced pixel-level encryption and LSB steganography combined Encrypt entire images or hide secret messages invisibly inside them.',
+    longDescription: 'This is a Django-based web application designed to provide mental health support through an AI-powered chat assistant. The application allows users to interact with the AI, save chat history, and retrieve past conversations.',
+    languages: ['javascript', 'css'],
+    tools: ['React', 'Threejs'],
+    githubUrl: 'https://github.com/KaviruN/MindEase',
+    imgSrc: '/MIndEase.png'
+  },
+
+  {
     id: 'TurboStryke',
     name: 'TurboStryke',
     category: 'Front End Project',
@@ -11,7 +35,7 @@ export const PROJECTS_DATA: Project[] = [
     languages: ['javascript', 'css'],
     tools: ['React', 'Threejs'],
     githubUrl: 'https://github.com/KaviruN/TurboStryke',
-    demoUrl: 'https://turbo-stryke-kavirus-projects-4aa1a92e.vercel.app/'
+    demoUrl: 'https://turbo-stryke-kavirus-projects-4aa1a92e.vercel.app/',
   },
   {
     id: 'nexcent',
@@ -87,8 +111,8 @@ export const PROJECTS_DATA: Project[] = [
     longDescription: 'A legacy script created during the early stages of my learning journey. It demonstrates practical Python scripting, utilizing native system modules and subprocess commands to query local Wi-Fi profiles and passwords.',
     languages: ['python'],
     tools: ['Subprocess', 'OS Module', 'Command Line'],
-    githubUrl: 'https://github.com/KaviruN/wifi-pass-tool',
-    demoUrl: 'https://github.com/KaviruN/wifi-pass-tool'
+    githubUrl: 'https://github.com/EthicalHackingLK/WIFI-Hack',
+    imgSrc: 'https://github.com/KaviruN/wifi-pass-tool'
   }
 ];
 

@@ -8,6 +8,7 @@ export interface Project {
   tools: string[];
   githubUrl?: string;
   demoUrl?: string;
+  imgSrc?: string;
 }
 
 export interface CtfAchievement {

@@ -135,13 +135,22 @@ export default function ProjectsSection() {
                   transformOrigin: 'top left',
                 }}
               >
-                <iframe
-                  src={selectedProject.demoUrl}
-                  title={selectedProject.name}
-                  className="preview-iframe"
-                  sandbox="allow-scripts allow-same-origin"
-                  scrolling="no"
-                />
+                {selectedProject.imgSrc ? (
+                  <img
+                    src={selectedProject.imgSrc}
+                    alt={selectedProject.name}
+                    className="preview-iframe"
+                    style={{ width: '100%', height: '100%'}}
+                  />
+                ) : (
+                  <iframe
+                    src={selectedProject.demoUrl}
+                    title={selectedProject.name}
+                    className="preview-iframe"
+                    sandbox="allow-scripts allow-same-origin"
+                    scrolling="no"
+                  />
+                )}
               </div>
             </div>
           </div>
