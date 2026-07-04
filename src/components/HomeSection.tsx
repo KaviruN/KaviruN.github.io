@@ -93,7 +93,6 @@ export default function HomeSection({ setActiveTab, openTerminal }: HomeSectionP
     return () => clearInterval(typingInterval);
   }, [activityIndex]);
 
-  // Fetch GitHub stats (streak + uptime) on mount
   useEffect(() => {
     getGitHubStats().then(({ streakDays, weeklyUptime, monthlyUptime }) => {
       setStreakDays(streakDays);
